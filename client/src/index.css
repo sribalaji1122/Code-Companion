@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  
+  --background: 270 20% 98%;    /* #FBFBFB - Very light violet tint */
+  --foreground: 260 30% 11%;    /* #171123 */
+  
+  --card: 0 0% 100%;
+  --card-foreground: 260 30% 11%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 260 30% 11%;
+  
+  --primary: 268 65% 46%;       /* #6F2DBD */
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 279 50% 59%;     /* #A663CC - Lighter violet */
+  --secondary-foreground: 0 0% 100%;
+  
+  --muted: 270 10% 94%;
+  --muted-foreground: 260 10% 45%;
+  
+  --accent: 268 65% 96%;
+  --accent-foreground: 268 65% 46%;
+  
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 270 10% 90%;
+  --input: 270 10% 90%;
+  --ring: 268 65% 46%;
+  
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted)); 
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3); 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.6); 
+}
+
+/* React Flow Customization */
+.react-flow__node {
+  @apply shadow-lg border-none transition-shadow duration-300;
+}
+.react-flow__node:hover {
+  @apply shadow-xl ring-2 ring-primary/20;
+}
+.react-flow__handle {
+  width: 8px;
+  height: 8px;
+  background: hsl(var(--primary));
+}
+.react-flow__edge-path {
+  stroke: hsl(var(--muted-foreground));
+  stroke-width: 2;
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary;
+}

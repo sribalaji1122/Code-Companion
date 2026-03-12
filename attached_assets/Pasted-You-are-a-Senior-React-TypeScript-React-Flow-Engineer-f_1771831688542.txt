@@ -1,0 +1,249 @@
+You are a Senior React + TypeScript + React Flow Engineer fixing and enhancing ONLY the frontend of InnooRyze ARC+.
+
+CRITICAL RULES:
+- DO NOT modify backend
+- DO NOT modify OpenAI schema
+- DO NOT modify database
+- DO NOT modify maturity logic
+- ONLY fix and enhance frontend rendering and UI
+- Preserve structured JSON contract exactly
+- Use defensive coding everywhere
+
+========================================================
+PART 1 — FIX HISTORY PAGE (STRUCTURED FORMAT)
+========================================================
+
+Problem:
+History page shows raw JSON under "Technical Details".
+It must render structured architecture visually.
+
+Fix HistoryPage.tsx:
+
+1. Remove raw JSON dump from UI.
+2. Extract:
+   const output = savedArchitecture?.output
+3. Render:
+   - Maturity tabs (Current / Crawl / Walk / Run)
+   - Architecture diagram (reuse ArchitectureDiagram component)
+   - Use Cases section (reuse UseCases rendering)
+   - Journey diagrams
+4. Only show raw JSON inside a collapsible "Debug Mode" panel.
+5. If no output:
+   Show:
+   "No architecture data available"
+6. Use defensive access:
+   architecture?.output?.maturity ?? []
+
+========================================================
+PART 2 — FIX ARCHITECTURE DIAGRAM
+========================================================
+
+Fix ArchitectureDiagram.tsx.
+
+MANDATORY LAYOUT:
+
+Architecture must ALWAYS render 4 lanes:
+
+1. COLLECT (Left)
+   - Data Sources
+
+2. PROCESS (Center)
+   - CRM
+   - CDP
+   - CMS
+   - Analytics
+   - Orchestration
+   - Decisioning / Personalization
+
+3. ACTIVATE (Right)
+   - Email
+   - Web
+   - App
+   - Messaging
+   - Ads
+   - Service
+
+4. DATA & SERVICE (Bottom)
+   - Data Warehouse
+   - Data Lake
+   - BI
+   - Reporting
+
+--------------------------------------------------------
+Rendering Rules:
+--------------------------------------------------------
+
+1. Render ALL nodes from:
+   aiOutput.maturity[activeStage].nodes
+
+2. Group nodes by lane positions:
+   collect → x: 100
+   process → x: 500
+   engage → x: 900
+   data → y: 450+
+
+3. Always render lane headers:
+   COLLECT | PROCESS | ACTIVATE
+   Bottom label: DATA & SERVICE
+
+4. Activation channels MUST always appear in ENGAGE lane.
+   If missing but referenced in useCases:
+   auto-add them as channelNode.
+
+5. Render ALL edges:
+   aiOutput.maturity[activeStage].edges
+
+6. Edge mapping:
+   solid → default
+   dashed → strokeDasharray: "5 5"
+   dotted → animated: true
+
+7. Safe edge rendering:
+   - Only render if both source and target exist
+   - Skip invalid edges safely
+   - Never crash
+
+8. React Flow container:
+   style={{ height: "600px", width: "100%" }}
+
+9. If no nodes:
+   Show:
+   "No architecture data available"
+
+========================================================
+PART 3 — FIX JOURNEY DIAGRAM
+========================================================
+
+Fix JourneyDiagram.tsx.
+
+Journey must NEVER render blank.
+
+Rules:
+
+1. If useCase.journey exists:
+   - Render Entry node
+   - Render steps sequentially
+   - Render Exit node
+
+2. Map safely:
+   (useCase.journey?.steps ?? []).map(...)
+
+3. Connect:
+   Entry → Step1 → Step2 → ... → Exit
+
+4. Node mapping:
+   entry → entryNode
+   action → actionNode
+   decision → decisionNode
+   exit → exitNode
+
+5. Add channel icons:
+   Email → Mail
+   WhatsApp → FaWhatsapp
+   Facebook → FaFacebook
+   Push → Bell
+   Call Center → Phone
+
+6. If journey missing:
+   Render:
+   "Journey not available"
+
+7. Fixed container height required.
+
+========================================================
+PART 4 — FIX UseCases.tsx CRASH
+========================================================
+
+Runtime error:
+Cannot read properties of undefined (reading 'entryCriteria')
+
+Fix entire component defensively.
+
+Replace:
+
+useCase.journey.entryCriteria
+
+With:
+
+useCase.journey?.entryCriteria ?? "N/A"
+
+Replace:
+
+useCase.journey.exitCriteria
+
+With:
+
+useCase.journey?.exitCriteria ?? "N/A"
+
+Wrap journey block:
+
+{useCase.journey && (...)}
+
+Map steps safely:
+
+(useCase.journey?.steps ?? []).map(...)
+
+Ensure:
+- No crash if journey undefined
+- No crash if steps undefined
+- No crash if useCases empty
+- Fully defensive component
+
+========================================================
+PART 5 — EXPAND INPUT OPTIONS (UI ONLY)
+========================================================
+
+Add additional Industry options:
+
+Government
+Non-Profit
+Energy & Utilities
+FMCG
+EdTech
+FinTech
+Gaming
+Aviation
+Food & Beverage
+Construction
+Consulting
+
+Expand Data Sources options:
+
+IoT device data
+In-store beacon data
+Chatbot interactions
+Social media engagement
+Ad impressions data
+Survey responses
+Email engagement data
+Webhooks
+API integrations
+Marketing campaign metadata
+
+DO NOT change backend schema.
+Only extend dropdown UI.
+
+========================================================
+FINAL REQUIREMENTS
+========================================================
+
+- History page renders structured architecture (not raw JSON)
+- All lanes always visible
+- All nodes render correctly
+- Activation channels always shown
+- All edges connected properly
+- Journey never blank
+- No undefined crashes
+- Defensive coding everywhere
+- No backend modification
+
+Return:
+
+1. Updated HistoryPage.tsx
+2. Updated ArchitectureDiagram.tsx
+3. Updated JourneyDiagram.tsx
+4. Updated UseCases.tsx
+5. Updated InputPage UI section
+
+Do NOT explain anything.
+Only output corrected components.

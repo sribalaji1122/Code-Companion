@@ -1,0 +1,200 @@
+You are upgrading ARC+ Architecture Visualization.
+
+GOAL:
+1) Generate enterprise-grade marketing/data architecture in LONG-TERM SOLUTION blueprint style.
+2) Render it using Mermaid.js with premium dark enterprise theme.
+3) Do NOT modify backend logic.
+4) Only upgrade visualization layer.
+
+==================================================
+PART 1 — ARCHITECTURE GENERATION RULES
+==================================================
+
+Generate 4 maturity states:
+
+- Current
+- Crawl (Year 1)
+- Walk (Year 2)
+- Run (Year 3)
+
+Each state MUST:
+
+1) Follow strict lane structure
+2) Use subgraphs
+3) Respect tool constraints
+4) Include legend
+5) Include "Key Changes vs Current"
+
+MANDATORY LANES:
+
+subgraph COLLECT
+Data sources only
+end
+
+subgraph PROCESS
+Grouped stacks:
+- Analytics Stack
+- Marketing Stack
+- Advertising Stack
+Include only applicable tools:
+CRM
+CDP
+CMS
+Marketing Automation
+Journey Orchestration
+Personalization Engine
+Decisioning Engine
+AI/ML
+Experimentation
+Offer Engine
+end
+
+subgraph ENGAGE
+Channels only:
+Web
+App
+Email
+SMS
+Push
+Paid Media
+Service
+end
+
+subgraph DATA_LAYER
+Data Lake
+Data Warehouse
+Customer 360
+BI / Reporting
+Real-time streaming (if supported)
+end
+
+==================================================
+ARROW RULES
+==================================================
+
+-->   Data Flow (solid)
+-.->  Segment Sync (dashed)
+==>   Real-Time Flow (thick)
+
+==================================================
+LEGEND (always include)
+==================================================
+
+→ Solid Arrow: Data Flow  
+⇢ Dashed Arrow: Segment Sync  
+⋯ Dotted Arrow: Real-Time Event  
+
+==================================================
+STAGE DEFINITIONS
+==================================================
+
+CURRENT
+- Existing tools only
+- Limited integrations
+- Mostly batch
+- No centralized profile
+
+CRAWL
+- Fix silos
+- Add CDP if missing
+- Basic audience sync
+- Batch flows
+
+WALK
+- Cross-channel orchestration
+- Behavioral segmentation
+- Customer 360
+- Partial real-time
+
+RUN
+- Real-time decisioning
+- AI personalization
+- Unified profile
+- Advanced experimentation
+- Full omnichannel activation
+
+==================================================
+PART 2 — MERMAID DARK ENTERPRISE THEME
+==================================================
+
+Use Mermaid initialization:
+
+mermaid.initialize({
+  startOnLoad: true,
+  theme: "base",
+  themeVariables: {
+    background: "#0f172a",
+    primaryColor: "#1e293b",
+    primaryTextColor: "#ffffff",
+    primaryBorderColor: "#6366f1",
+    lineColor: "#94a3b8",
+    secondaryColor: "#111827",
+    tertiaryColor: "#1f2937",
+    fontFamily: "Inter, sans-serif",
+    fontSize: "14px"
+  },
+  flowchart: {
+    curve: "basis",
+    padding: 20
+  }
+});
+
+==================================================
+LANE STYLING
+==================================================
+
+classDef collect fill:#0ea5e9,stroke:#38bdf8,color:#ffffff,stroke-width:2px;
+classDef process fill:#6366f1,stroke:#8b5cf6,color:#ffffff,stroke-width:2px;
+classDef engage fill:#10b981,stroke:#34d399,color:#ffffff,stroke-width:2px;
+classDef data fill:#f59e0b,stroke:#fbbf24,color:#000000,stroke-width:2px;
+
+Assign each node to correct class.
+
+==================================================
+LINK STYLING
+==================================================
+
+Default:
+stroke:#94a3b8
+stroke-width:2px
+
+Real-time:
+stroke:#22d3ee
+stroke-width:3px
+
+==================================================
+PART 3 — REACT COMPONENT REQUIREMENTS
+==================================================
+
+Return:
+
+1) React component named EnterpriseArchitecture.tsx
+2) Mermaid initialization
+3) Styled container:
+
+<div className="
+  bg-slate-900
+  p-8
+  rounded-2xl
+  shadow-2xl
+  border border-slate-700
+  backdrop-blur-lg
+">
+
+4) Stage selector (Current / Crawl / Walk / Run)
+5) Auto re-render on stage change
+6) No white flash
+7) Responsive layout
+
+==================================================
+OUTPUT FORMAT
+==================================================
+
+Return:
+
+- Full React component code
+- Mermaid config
+- Example stage diagram structure
+- Clean TypeScript
+- Production-ready
+- No explanation

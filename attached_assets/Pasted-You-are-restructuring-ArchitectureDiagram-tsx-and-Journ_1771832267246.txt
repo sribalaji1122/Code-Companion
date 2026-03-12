@@ -1,0 +1,95 @@
+You are restructuring ArchitectureDiagram.tsx and JourneyDiagram.tsx.
+
+Do NOT add defensive fallbacks.
+Do NOT show "Journey not available".
+Do NOT render blank state.
+
+Instead, FIX the layout logic.
+
+==================================================
+ARCHITECTURE FIX
+==================================================
+
+Problem:
+All nodes are rendering in PROCESS lane.
+Collect and Activate lanes empty.
+
+Fix:
+
+1. Force lane grouping strictly by:
+   node.lane === "collect"
+   node.lane === "process"
+   node.lane === "engage"
+   node.lane === "data"
+
+2. If node.lane is undefined:
+   Infer lane:
+     - sourceNode → collect
+     - channelNode → engage
+     - dataNode → data
+     - systemNode → process
+
+3. Automatically build flow:
+
+   For each collect node:
+     connect → first process node
+
+   For each process node:
+     connect → first engage node
+
+   For each process node:
+     connect → first data node (if exists)
+
+4. Always render lane headers visibly.
+
+5. Layout positions:
+   collect x=100
+   process x=500
+   engage x=900
+   data y=500
+
+6. Ensure architecture visually looks like:
+
+   COLLECT → PROCESS → ACTIVATE
+              ↓
+          DATA & SERVICE
+
+==================================================
+JOURNEY FIX
+==================================================
+
+Problem:
+Journey not rendering even though entry/exit exist.
+
+Fix:
+
+1. If journey.steps is empty:
+   Auto-generate one step using:
+      "Primary Engagement Touchpoint"
+
+2. Build diagram like:
+
+   Entry → Step1 → Exit
+
+3. Always render at least 3 nodes:
+   Entry
+   One action node
+   Exit
+
+4. Do NOT render blank state.
+
+5. Map channel icon if exists.
+
+==================================================
+IMPORTANT
+==================================================
+
+Do NOT modify backend.
+Do NOT change schema.
+Only restructure layout logic.
+
+Return:
+- Updated ArchitectureDiagram.tsx
+- Updated JourneyDiagram.tsx
+
+Do not explain anything.

@@ -1,0 +1,137 @@
+Modify ONLY the architecture generation and rendering logic.
+
+DO NOT change:
+- Input schema
+- Form UI
+- Dropdown options
+- API request structure
+- Tool selection logic
+
+Only update how architecture states are built and rendered.
+
+========================================
+GOAL
+========================================
+
+Enforce structured enterprise layout for all 4 stages:
+
+1. Current
+2. Crawl
+3. Walk
+4. Run
+
+Each stage must render:
+- Architecture diagram
+- Key Changes vs Current (bullet list)
+
+========================================
+MANDATORY LAYOUT ENFORCEMENT
+========================================
+
+All stages must follow fixed 4-lane structure:
+
+LEFT LANE (Collect)
+x = 100
+Contains only data sources
+
+CENTER LANE (Process)
+x = 500
+Contains:
+CRM
+CDP
+CMS
+Marketing Automation
+Analytics
+Orchestration
+Decisioning
+Personalization
+
+RIGHT LANE (Engage)
+x = 900
+Contains:
+Email
+SMS
+Push
+Paid Media
+On-site
+Call Center
+
+BOTTOM LAYER (Data / BI)
+Full-width horizontal strip
+Contains:
+Data Warehouse / Lake
+Analytics
+Reporting
+Customer 360
+
+This bottom layer must always render.
+Never place it on right side.
+
+========================================
+STAGE TRANSFORMATION RULES
+========================================
+
+Do NOT reuse Current layout for other stages.
+
+CURRENT:
+- Exact existing ecosystem
+- Minimal integrations
+- CRM-centric
+- No orchestration
+- No intelligence
+
+CRAWL:
+- Add missing integrations
+- Introduce CDP if not present
+- Connect silos
+- Basic segmentation
+- Still batch-based
+
+WALK:
+- Add Marketing Automation
+- Add Orchestration layer
+- Add Personalization
+- Improve integration patterns
+
+RUN:
+- Add Decisioning layer
+- Add real-time event flows (dotted edges)
+- Add AI/intelligence node
+- Add closed-loop analytics
+- Fully connected ecosystem
+
+Each stage must visually differ.
+
+========================================
+EDGE RULES
+========================================
+
+solid → data flow
+dashed → segment sync
+dotted → real-time event
+
+RUN stage must include dotted edges.
+CRAWL must not include dotted edges.
+
+========================================
+KEY CHANGES SECTION
+========================================
+
+Below each stage diagram render:
+
+"Key Changes vs Current"
+
+Stage-specific bullet list only.
+No generic text.
+
+========================================
+RENDERING RULES
+========================================
+
+- Deterministic positioning
+- No random node placement
+- No blank canvases
+- If stage missing, show message
+
+Do not modify input logic.
+Modify only architecture stage builder and renderer.

@@ -1,0 +1,92 @@
+You are upgrading ARC+ Architecture Visualization.
+
+STOP using Mermaid for layout rendering.
+
+GOAL:
+Build deterministic enterprise blueprint architecture layout using React + Tailwind + SVG.
+
+MANDATORY LAYOUT STRUCTURE:
+
+1️⃣ Top Section – 3 Fixed Columns
+----------------------------------
+Left Column:   COLLECT (Data Sources)
+Center Column: PROCESS (CRM, CDP, CMS, Analytics, Orchestration, Decisioning)
+Right Column:  ACTIVATE (Email, Web, App, Messaging, Ads, Service)
+
+Columns must:
+- Use CSS Grid (grid-cols-3)
+- Be equal width
+- Have vertical dashed separators between them
+- Stack nodes vertically inside each column
+- Maintain consistent spacing
+- Never auto-reflow
+
+2️⃣ Bottom Section – Full Width
+--------------------------------
+DATA & SERVICE layer spanning entire width.
+
+Must include:
+- Data Lake
+- Data Warehouse
+- BI / Dashboards
+- Reporting
+- Real-time streaming (if stage supports)
+
+Use:
+- Separate container below grid
+- Full width strip
+- Distinct styling
+
+3️⃣ Legend (Required)
+--------------------------------
+Display legend section below architecture:
+
+→ Solid Arrow: Data Flow
+⇢ Dashed Arrow: Segment Sync
+⋯ Dotted Arrow: Real-Time Events
+
+4️⃣ Theming (Enterprise Dark)
+--------------------------------
+Main container:
+bg-slate-900
+border border-slate-700
+rounded-2xl
+shadow-2xl
+p-10
+
+Column node colors:
+Collect: bg-sky-600
+Process: bg-indigo-600
+Activate: bg-emerald-600
+Data Layer: bg-amber-500
+
+5️⃣ Architecture States Support
+--------------------------------
+Component must accept:
+
+stage: "Current" | "Crawl" | "Walk" | "Run"
+data: {
+  collect: [],
+  process: [],
+  engage: [],
+  dataLayer: []
+}
+
+6️⃣ Strict Rules
+--------------------------------
+- No Mermaid
+- No auto graph layout
+- No third-party diagram library
+- No backend changes
+- No layout hacks
+- Fully deterministic structure
+- Pixel stable
+- Production-ready TypeScript
+- Responsive layout
+- Clean spacing
+
+RETURN:
+Full React component code only.
+TypeScript.
+Production-ready.
+No explanation.

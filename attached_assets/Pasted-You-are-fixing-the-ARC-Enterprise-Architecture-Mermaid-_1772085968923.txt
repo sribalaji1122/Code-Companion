@@ -1,0 +1,109 @@
+You are fixing the ARC+ Enterprise Architecture Mermaid renderer.
+
+PROBLEM:
+The architecture lanes (COLLECT, PROCESS, ENGAGE, DATA_LAYER) are stacking vertically instead of rendering in true horizontal blueprint layout.
+
+GOAL:
+Force enterprise 4-lane layout:
+
+COLLECT  →  PROCESS  →  ENGAGE
+               ↓
+          DATA_LAYER (full width bottom)
+
+This must be deterministic.
+LLM must NOT control structure.
+
+==================================================
+MANDATORY IMPLEMENTATION
+==================================================
+
+1️⃣ Use:
+
+flowchart LR
+
+NOT:
+graph LR
+
+--------------------------------------------------
+
+2️⃣ Create invisible horizontal lane anchors:
+
+COLLECT_ANCHOR[ ]:::invisible
+PROCESS_ANCHOR[ ]:::invisible
+ENGAGE_ANCHOR[ ]:::invisible
+
+COLLECT_ANCHOR --> PROCESS_ANCHOR --> ENGAGE_ANCHOR
+
+--------------------------------------------------
+
+3️⃣ Force subgraph alignment using anchors:
+
+COLLECT_ANCHOR --> COLLECT_ROOT
+PROCESS_ANCHOR --> PROCESS_ROOT
+ENGAGE_ANCHOR --> ENGAGE_ROOT
+
+Where:
+
+COLLECT_ROOT is first node inside COLLECT
+PROCESS_ROOT is first node inside PROCESS
+ENGAGE_ROOT is first node inside ENGAGE
+
+--------------------------------------------------
+
+4️⃣ DATA_LAYER must be positioned below:
+
+COLLECT_ROOT --> DATA_LAYER_ROOT
+PROCESS_ROOT --> DATA_LAYER_ROOT
+ENGAGE_ROOT --> DATA_LAYER_ROOT
+
+--------------------------------------------------
+
+5️⃣ Define invisible styling:
+
+classDef invisible fill:transparent,stroke:transparent,color:transparent;
+
+--------------------------------------------------
+
+6️⃣ Subgraph structure must ALWAYS render:
+
+subgraph COLLECT
+direction TB
+${collectNodes}
+end
+
+subgraph PROCESS
+direction TB
+${processNodes}
+end
+
+subgraph ENGAGE
+direction TB
+${engageNodes}
+end
+
+subgraph DATA_LAYER
+direction LR
+${dataNodes}
+end
+
+Even if empty → still render subgraph.
+
+--------------------------------------------------
+
+7️⃣ Do NOT let Mermaid auto-arrange lanes.
+Anchors must control horizontal positioning.
+
+--------------------------------------------------
+
+8️⃣ Preserve existing theme, styling, and classDefs.
+Do NOT modify backend architecture logic.
+Only fix layout engine.
+
+==================================================
+RETURN
+==================================================
+
+Return updated Mermaid builder function only.
+TypeScript.
+Production-ready.
+No explanation.

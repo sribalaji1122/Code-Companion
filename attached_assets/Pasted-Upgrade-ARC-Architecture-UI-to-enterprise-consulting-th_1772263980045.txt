@@ -1,0 +1,188 @@
+Upgrade ARC+ Architecture UI to enterprise consulting theme
+AND add professional glow interaction.
+
+DO NOT change:
+- Layout structure
+- Grid system
+- Node alignment
+- Data logic
+- Rendering logic
+- Connection logic
+
+ONLY update styling and interaction.
+
+====================================================
+GLOBAL BOARD
+====================================================
+
+Page:
+- bg-[#f3f4f6]
+
+Architecture container:
+- bg-[#f8fafc]
+- rounded-xl
+- border border-slate-200
+- shadow-sm
+- p-10
+
+Remove:
+- Dark backgrounds
+- Purple-heavy accents
+- Neon styles
+- Heavy shadows
+
+====================================================
+LANE CONTAINERS
+====================================================
+
+Each lane:
+- bg-white
+- border border-slate-200
+- rounded-xl
+- shadow-[0_2px_8px_rgba(15,23,42,0.05)]
+- px-8 py-10
+
+Lane titles:
+- text-slate-500
+- uppercase
+- text-xs
+- tracking-widest
+- font-semibold
+
+====================================================
+NODE CARD BASE STYLE
+====================================================
+
+Base card:
+- bg-white
+- border border-slate-200
+- rounded-xl
+- shadow-[0_4px_12px_rgba(15,23,42,0.08)]
+- px-6 py-4
+- min-w-[200px]
+- transition-all duration-200 ease-out
+- cursor-pointer
+
+Label (SYSTEM / PROCESS / CHANNEL):
+- text-[10px]
+- uppercase
+- tracking-widest
+- text-slate-400
+- font-medium
+
+Title:
+- text-slate-800
+- font-semibold
+- text-sm
+
+Subtitle:
+- text-slate-400
+- text-xs
+
+====================================================
+ICON STYLE
+====================================================
+
+Default:
+- bg-slate-100
+- text-slate-600
+- rounded-md
+- p-2
+
+CHANNEL nodes:
+- border border-orange-200
+- bg-orange-50
+- icon bg-orange-100
+- text-orange-500
+
+====================================================
+CONNECTOR STYLE
+====================================================
+
+Solid (Data Flow):
+- stroke: #94a3b8
+- stroke-width: 2
+- opacity: 0.7
+
+Dashed (Segment Sync):
+- stroke: #f59e0b
+- stroke-dasharray: 6 6
+- opacity: 0.8
+
+Dotted (Real-time Event):
+- stroke: #6366f1
+- stroke-dasharray: 2 4
+- opacity: 0.8
+
+====================================================
+HOVER GLOW EFFECT (All Nodes)
+====================================================
+
+On hover:
+- hover:scale-[1.02]
+- hover:border-blue-300
+- hover:shadow-[0_0_0_3px_rgba(59,130,246,0.15)]
+
+Glow must be subtle.
+Professional enterprise feel.
+No neon.
+No large blur.
+
+====================================================
+ACTIVE / CLICK STATE
+====================================================
+
+When node selected:
+
+- ring-2
+- ring-blue-400
+- ring-offset-2
+- ring-offset-white
+- shadow-[0_0_0_4px_rgba(59,130,246,0.2)]
+
+====================================================
+CHANNEL NODE GLOW (Orange Variant)
+====================================================
+
+Hover:
+- hover:border-orange-300
+- hover:shadow-[0_0_0_3px_rgba(249,115,22,0.18)]
+
+Active:
+- ring-2
+- ring-orange-400
+- ring-offset-2
+
+====================================================
+DATA LAYER
+====================================================
+
+Container:
+- bg-white
+- border border-slate-200
+- rounded-xl
+- shadow-sm
+- py-8
+
+Database nodes:
+- border border-blue-200
+- text-blue-600
+
+====================================================
+LEGEND BOX
+====================================================
+
+- bg-white
+- border border-slate-200
+- rounded-lg
+- shadow-sm
+- text-slate-600
+- text-xs
+
+====================================================
+RETURN
+====================================================
+
+Updated React styling only.
+No explanation.
+Production-ready.

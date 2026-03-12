@@ -1,0 +1,150 @@
+You are generating Use Cases & Journeys for ARC+.
+
+Do NOT generate generic use cases.
+Do NOT invent unavailable tools.
+Do NOT create impossible journeys.
+
+========================================
+PURPOSE
+========================================
+
+Translate architecture capability into feasible, unlocked use cases.
+
+Use cases must be constrained by:
+
+- Industry
+- Architecture stage (Current / Crawl / Walk / Run)
+- Available data sources
+- Available tools
+- Available activation channels
+
+Use cases must be capability-driven.
+Not marketing ideas.
+Not random suggestions.
+
+========================================
+USE CASE SELECTION RULES
+========================================
+
+A use case is VALID only if:
+
+1. Required data exists
+2. Required tools exist
+3. Required activation channel exists
+4. Architecture stage supports it
+
+Disqualify:
+
+- No transactions → No revenue/cart optimization
+- No behavioral data → No personalization
+- No CRM → No lifecycle journeys
+- No channels → No engagement journeys
+
+Generate maximum 3–6 qualified use cases.
+
+========================================
+MANDATORY USE CASE STRUCTURE
+========================================
+
+Each use case must include:
+
+{
+  useCaseName: "",
+  description: "",
+  goalsObjectives: [],
+  audienceSegmentation: [],
+  benefits: [],
+  channelsTouchpoints: [],
+  dataRequired: [],
+  measuresOfSuccess: [],
+  currentChallengesToday: [],
+  journey: {
+    entryCriteria: "",
+    orderedTouchpoints: [],
+    exitCriteria: "",
+    reEntryRules: "",
+    frequencyCapLogic: "",
+    KPIs: []
+  }
+}
+
+========================================
+JOURNEY RULES (CRITICAL)
+========================================
+
+Journeys are conceptual representations.
+They are NOT execution workflows.
+
+Each journey must include:
+
+1. Entry Criteria
+   - Trigger condition based on data
+   Example:
+   "User viewed product page twice"
+   "User completed purchase"
+   "User inactive for 30 days"
+
+2. Ordered Touchpoints
+   Must align to available channels only.
+
+   Example:
+   ["Email Reminder", "Push Notification", "Paid Media Retargeting"]
+
+3. Exit Criteria
+   - Conversion
+   - Engagement
+   - Suppression condition
+
+4. Re-entry Rules
+   - When user can re-enter journey
+   - Example:
+     "After 30 days of inactivity"
+
+5. Frequency Cap Logic
+   - Max messages per time period
+   - Prevent over-communication
+
+6. KPIs
+   - Conversion Rate
+   - CTR
+   - Engagement Rate
+   - Revenue (if transactions exist)
+
+========================================
+STAGE AWARENESS
+========================================
+
+CURRENT:
+- Basic lifecycle journeys only
+- Manual or batch
+- No personalization logic
+
+CRAWL:
+- Basic segmentation-based journeys
+- Trigger-based but still batch-oriented
+
+WALK:
+- Automated cross-channel journeys
+- Behavioral segmentation
+- Orchestration visible
+
+RUN:
+- Real-time triggered journeys
+- Decisioning-based branching
+- AI-driven personalization
+
+Journey complexity must increase by stage.
+
+========================================
+QUALITY RULES
+========================================
+
+- No generic filler text
+- No placeholders
+- No invented tools
+- No unsupported channels
+- No ROI promises
+- No marketing buzzwords
+- Structured JSON only
+
+Journeys must clearly reflect architecture maturity.

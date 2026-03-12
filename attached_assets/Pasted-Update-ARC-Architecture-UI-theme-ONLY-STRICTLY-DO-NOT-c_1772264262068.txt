@@ -1,0 +1,165 @@
+Update ARC+ Architecture UI theme ONLY.
+
+STRICTLY DO NOT change:
+- Layout grid
+- Node alignment
+- Node positioning
+- Lane positioning
+- Data flow logic
+- Rendering logic
+- Component structure
+- JSX structure
+- Flex/Grid configuration
+- Spacing system
+- Width/height calculations
+- Connection engine
+- Z-index ordering
+
+This is a VISUAL THEME UPDATE ONLY.
+
+====================================================
+GLOBAL BOARD
+====================================================
+
+Page:
+- bg-[#f3f4f6]
+
+Architecture container:
+- bg-[#f8fafc]
+- rounded-xl
+- border border-slate-200
+- shadow-sm
+- p-10
+
+Remove:
+- Dark backgrounds
+- Purple heavy theme
+- Neon accents
+
+====================================================
+LANE BACKGROUND (Collect / Process / Engage)
+====================================================
+
+Each lane:
+- bg-white
+- border border-slate-200
+- rounded-xl
+- shadow-[0_2px_8px_rgba(15,23,42,0.05)]
+- px-8 py-10
+
+Lane title:
+- text-slate-500
+- uppercase
+- text-xs
+- tracking-widest
+- font-semibold
+
+====================================================
+NODE CARD STYLE
+====================================================
+
+Base card:
+- bg-white
+- border border-slate-200
+- rounded-xl
+- shadow-[0_4px_12px_rgba(15,23,42,0.08)]
+- px-6 py-4
+- min-w-[200px]
+- transition-all duration-200
+- hover:shadow-[0_6px_16px_rgba(15,23,42,0.12)]
+
+Label (SYSTEM / PROCESS / CHANNEL):
+- text-[10px]
+- uppercase
+- tracking-widest
+- text-slate-400
+- font-medium
+
+Title:
+- text-slate-800
+- font-semibold
+- text-sm
+
+Subtitle:
+- text-slate-400
+- text-xs
+
+====================================================
+ICON STYLE
+====================================================
+
+Default:
+- bg-slate-100
+- text-slate-600
+- rounded-md
+- p-2
+
+CHANNEL NODES (Email / SMS / WhatsApp / Paid Media):
+- border border-orange-200
+- bg-orange-50
+- icon bg-orange-100
+- text-orange-500
+
+====================================================
+CONNECTOR STYLE
+====================================================
+
+Solid (Data Flow):
+- stroke: #94a3b8
+- stroke-width: 2
+- opacity: 0.7
+
+Dashed (Segment Sync):
+- stroke: #f59e0b
+- stroke-dasharray: 6 6
+- opacity: 0.8
+
+Dotted (Real-time Event):
+- stroke: #6366f1
+- stroke-dasharray: 2 4
+- opacity: 0.8
+
+====================================================
+DATA LAYER
+====================================================
+
+Container:
+- bg-white
+- border border-slate-200
+- rounded-xl
+- shadow-sm
+- py-8
+
+Database nodes:
+- bg-white
+- border border-blue-200
+- text-blue-600
+
+====================================================
+LEGEND BOX
+====================================================
+
+- bg-white
+- border border-slate-200
+- rounded-lg
+- shadow-sm
+- text-slate-600
+- text-xs
+
+====================================================
+REMOVE
+====================================================
+
+- Heavy drop shadows
+- High contrast borders
+- Strong purple accents
+- Dark backgrounds
+
+====================================================
+RETURN
+====================================================
+
+Updated styling classes only.
+No layout modification.
+No structural changes.
+Production-ready.

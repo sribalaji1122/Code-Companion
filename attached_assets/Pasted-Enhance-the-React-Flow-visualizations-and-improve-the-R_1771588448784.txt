@@ -1,0 +1,241 @@
+Enhance the React Flow visualizations and improve the Region dropdown.
+
+This update includes TWO major areas:
+1) Customer Journey React Flow Fix
+2) Architecture React Flow Edge Fix
+3) Region Dropdown Expansion
+
+IMPORTANT:
+- Do NOT modify backend.
+- Do NOT change JSON structure.
+- Only update frontend transformation and visualization logic.
+- Keep everything TypeScript-safe.
+- No use of `any` unless absolutely required.
+- Return complete updated frontend component code.
+
+========================================================
+PART 1 — FIX CUSTOMER JOURNEY REACT FLOW
+========================================================
+
+PROBLEM:
+The journey canvas is blank even though journey steps exist.
+Backend returns:
+
+{
+  id: string,
+  name: string,
+  trigger: string,
+  steps: string[],
+  outcome: string
+}
+
+React Flow requires nodes and edges format.
+
+--------------------------------------------------------
+TASK 1A — Create Utility Function
+--------------------------------------------------------
+
+Create a TypeScript-safe function:
+
+function buildFlowFromJourney(journey)
+
+It must:
+
+1. Convert journey.steps into vertical nodes.
+2. Enforce minimum 5 steps:
+   - If steps < 5, append "Process Step" placeholders.
+3. Layout:
+   x: 250
+   y: index * 120
+
+Each step node format:
+{
+  id: string,
+  position: { x: number, y: number },
+  data: { label: string },
+  type: "default"
+}
+
+--------------------------------------------------------
+TASK 1B — Add START and END Nodes
+--------------------------------------------------------
+
+1. Add START node:
+   - Green
+   - Above first step
+   - Label: "START"
+
+2. Add END node:
+   - Red
+   - After last step
+   - Label: "END"
+
+--------------------------------------------------------
+TASK 1C — Generate Edges
+--------------------------------------------------------
+
+Create smoothstep edges:
+
+- START → First Step
+- Sequential step connections
+- Last Step → END
+
+Use:
+type: "smoothstep"
+
+--------------------------------------------------------
+TASK 1D — React Flow Enhancements
+--------------------------------------------------------
+
+- Use useMemo to compute nodes and edges.
+- Add:
+   - fitView
+   - MiniMap
+   - Controls
+   - Background (dotted grid)
+- Add fallback UI:
+   - If journey undefined → show "No journey selected"
+   - If steps empty → show "No steps available"
+
+========================================================
+PART 2 — FIX ARCHITECTURE REACT FLOW EDGE GENERATION
+========================================================
+
+PROBLEM:
+Some architecture nodes (e.g., BigQuery, Email) are rendered but not connected.
+
+Example structure:
+
+{
+  nodes: [
+    { id: "website", label: "Website" },
+    { id: "hubspot", label: "HubSpot" },
+    { id: "bigquery", label: "BigQuery" }
+  ],
+  dataFlow: [
+    { from: "website", to: "hubspot", label: "Data Collection" },
+    { from: "hubspot", to: "bigquery", label: "Data Sync" }
+  ]
+}
+
+--------------------------------------------------------
+TASK 2A — Proper Edge Transformation
+--------------------------------------------------------
+
+Convert dataFlow into React Flow edges:
+
+{
+  id: string,
+  source: string,
+  target: string,
+  label?: string,
+  type: "smoothstep",
+  animated?: boolean
+}
+
+Ensure:
+- source matches node.id EXACTLY
+- target matches node.id EXACTLY
+- No hardcoded mismatches
+
+--------------------------------------------------------
+TASK 2B — Prevent Isolated Nodes
+--------------------------------------------------------
+
+Before rendering:
+
+1. Detect nodes with no incoming or outgoing edges.
+2. If isolated:
+   - Log console warning:
+     "Node X is isolated"
+   OR
+   - Optionally auto-connect to first node.
+
+--------------------------------------------------------
+TASK 2C — Validation Layer
+--------------------------------------------------------
+
+Before passing edges to ReactFlow:
+
+- Validate every edge source exists in nodes.
+- Validate every edge target exists in nodes.
+- Filter out invalid edges.
+- Log mismatch errors.
+
+--------------------------------------------------------
+TASK 2D — Visualization Improvements
+--------------------------------------------------------
+
+- Use smoothstep edges
+- Add animated edges for primary flows
+- Add arrow markers
+- Use useMemo for nodes + edges
+- Console log node and edge counts
+
+========================================================
+PART 3 — REGION DROPDOWN EXPANSION
+========================================================
+
+Improve region dropdown to include 3–6 countries per region.
+
+Use structured object:
+
+North America:
+- USA
+- Canada
+- Mexico
+- Costa Rica
+
+Europe:
+- UK
+- Germany
+- France
+- Spain
+- Italy
+- Netherlands
+
+Asia:
+- India
+- China
+- Japan
+- Singapore
+- UAE
+- Malaysia
+
+Middle East:
+- UAE
+- Saudi Arabia
+- Qatar
+- Oman
+
+Africa:
+- South Africa
+- Kenya
+- Nigeria
+- Egypt
+
+Oceania:
+- Australia
+- New Zealand
+- Fiji
+
+Render using:
+
+<select>
+  <optgroup label="Region">
+    <option>Country</option>
+  </optgroup>
+</select>
+
+========================================================
+FINAL REQUIREMENTS
+========================================================
+
+- Keep TypeScript strict.
+- Clean styling.
+- Professional SaaS-level visualization.
+- No backend changes.
+- Return complete updated React components for:
+   - Journey Map
+   - Architecture Visualization
+   - Region Dropdown

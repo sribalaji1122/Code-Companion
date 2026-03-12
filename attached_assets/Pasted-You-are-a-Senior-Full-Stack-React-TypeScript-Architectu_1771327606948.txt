@@ -1,0 +1,367 @@
+You are a Senior Full-Stack React + TypeScript Architecture Visualization Engineer.
+
+You are building the production-ready version of:
+
+InnooRyze ARC+
+(Architecture & Capability Explorer)
+
+This is an INTERNAL AI-powered web tool.
+
+========================================================
+CRITICAL NON-NEGOTIABLE RULES
+========================================================
+
+DO NOT:
+- Modify ARC+ business logic
+- Change JSON output schema
+- Change maturity logic (Current / Crawl / Walk / Run)
+- Invent tools not selected (except staged additions in Crawl/Walk/Run)
+- Add authentication
+- Add pricing / ROI modeling
+- Add execution workflows
+- Generate free-text AI responses to UI
+
+AI must return STRICT JSON ONLY.
+
+Frontend must only render JSON.
+
+========================================================
+TECH STACK (MANDATORY)
+========================================================
+
+Frontend:
+- React (TypeScript)
+- React Flow (diagram rendering)
+- Tailwind CSS
+- lucide-react
+- react-icons
+- dagre
+
+Backend:
+- Node.js
+- Express
+- OpenAI API
+- JSON schema validation
+- Replit Secrets for API key
+
+Install:
+
+npm install react-router-dom reactflow lucide-react react-icons dagre express cors openai ajv
+
+========================================================
+APPLICATION STRUCTURE (3 SCREENS ONLY)
+========================================================
+
+Routes:
+
+/input
+/architecture
+/use-cases
+
+NO separate routes for maturity stages.
+
+========================================================
+SCREEN 1 — INPUT CAPTURE
+========================================================
+
+Fields must EXACTLY match:
+
+Company Context:
+- Company Name (text)
+- Industry (dropdown – fixed list)
+- Business Model (B2B / B2C / Both)
+- Region (optional)
+
+Data Sources (multi-select):
+- Website events
+- Mobile app events
+- CRM / sales interactions
+- Transactions / POS / eCommerce
+- Customer support / call center
+- Loyalty / membership
+- Paid media platforms
+- Third-party / partner data
+- Offline imports
+
+Tools Used (single select each):
+- CRM
+- Marketing Automation
+- CMS
+- CDP
+- Analytics
+- Data Warehouse / Lake
+- Personalization
+
+Activation Channels (multi-select):
+- Email
+- WhatsApp / SMS
+- Push notifications
+- On-site personalization
+- Paid media
+- Call center / service
+
+Submit → POST to backend → backend calls OpenAI → returns structured JSON.
+
+========================================================
+SCREEN 2 — ARCHITECTURE VISUALIZATION
+========================================================
+
+Single page with TABS:
+
+- Current
+- Crawl
+- Walk
+- Run
+
+Each tab must display:
+
+1. React Flow architecture diagram
+2. Key Changes vs Current (bullet list)
+3. Legend
+
+--------------------------------------------------------
+MANDATORY LAYOUT LANES
+--------------------------------------------------------
+
+Left Lane → COLLECT
+Center Lane → PROCESS
+Right Lane → ENGAGE
+Bottom Lane → DATA / BI
+
+--------------------------------------------------------
+NODE TYPES
+--------------------------------------------------------
+
+Create custom React Flow nodes:
+
+- sourceNode (circle) → Data Sources
+- systemNode (rounded rectangle) → CRM, CDP, CMS, Analytics, MA, Personalization
+- channelNode → Activation channels
+- dataNode → Data warehouse/lake
+- decisionNode (diamond for journeys only)
+
+--------------------------------------------------------
+POSITIONING RULES
+--------------------------------------------------------
+
+Collect Zone → x: 100
+Process Zone → x: 500
+Engage Zone → x: 900
+Data Layer → bottom horizontal
+
+Use dagre for vertical alignment inside lanes.
+
+--------------------------------------------------------
+CONNECTION STYLES (STRICT)
+--------------------------------------------------------
+
+solid → Data Flow
+dashed → Segment / Audience Sync
+dotted (animated) → Real-Time Events
+
+Do NOT invent new flow types.
+
+--------------------------------------------------------
+ICON MAPPING
+--------------------------------------------------------
+
+Use lucide-react + react-icons.
+
+CRM:
+Salesforce → Database
+HubSpot → Users
+Zoho → Building
+MS Dynamics → Database
+
+Analytics:
+GA4 → BarChart
+Adobe Analytics → Activity
+
+CDP:
+Segment → Layers
+Tealium → Shuffle
+Adobe RT-CDP → Layers
+Zoho CDP → Layers
+
+Marketing Automation:
+HubSpot → Mail
+Zoho → Mail
+SFMC → Mail
+Marketo → Send
+Adobe → Mail
+
+CMS:
+WordPress → Globe
+Drupal → Layout
+AEM → Layout
+
+Data Layer:
+Snowflake → Database
+BigQuery → Cloud
+Redshift → Database
+Azure → Cloud
+
+Channels:
+Email → Mail
+WhatsApp → FaWhatsapp
+SMS → MessageSquare
+Push → Bell
+Paid Media → Megaphone
+Facebook → FaFacebook
+Instagram → FaInstagram
+Call Center → Phone
+On-Site → Monitor
+
+--------------------------------------------------------
+LEGEND PANEL
+--------------------------------------------------------
+
+Solid → Data Flow
+Dashed → Segment Sync
+Dotted → Real-Time Events
+
+========================================================
+SCREEN 3 — USE CASES & JOURNEYS
+========================================================
+
+Generate UP TO 6 qualified use cases:
+
+const qualified = applyArcConstraints(useCases, input)
+return qualified.slice(0, 6)
+
+Respect disqualification rules:
+- No Transactions → No revenue/cart use case
+- No behavioral data → No personalization
+- No channels → No journey
+- No CRM → No lifecycle use case
+
+--------------------------------------------------------
+USE CASE TEMPLATE (MANDATORY)
+--------------------------------------------------------
+
+Each use case must include:
+
+- Use Case Name
+- Description
+- Goals & Objectives
+- Audience Segmentation
+- Benefits
+- Channels & Touchpoints
+- Data Required
+- Measures of Success
+- Current Challenges Today
+
+--------------------------------------------------------
+JOURNEY SECTION
+--------------------------------------------------------
+
+Each use case must include:
+
+Journey Overview:
+- Entry Criteria
+- Ordered Touchpoints
+- Exit Criteria
+- Re-entry Rules
+- Frequency Cap
+- KPIs
+
+Journeys are conceptual only.
+
+--------------------------------------------------------
+JOURNEY DIAGRAM
+--------------------------------------------------------
+
+Use React Flow.
+
+Flow:
+
+Entry → Action → Decision → Action → Exit
+
+Node Types:
+- entryNode (circle)
+- actionNode (rounded rectangle with icon)
+- decisionNode (diamond)
+- exitNode (dark circle)
+
+Each action node must display:
+Icon + Channel Name (Email, FB, WhatsApp, etc.)
+
+Include 3 variations:
+- Variation 1
+- Variation 2
+- Variation 3
+
+Tabs inside each use case.
+
+========================================================
+BRAND DESIGN SYSTEM
+========================================================
+
+Primary: #6F2DBD
+Secondary: #A663CC
+Dark: #171123
+Light: #FBFBFB
+
+Tailwind config must extend:
+
+arcPrimary
+arcSecondary
+arcDark
+arcLight
+
+Use:
+Background → arcLight
+Headers → arcDark
+Buttons → arcPrimary
+Hover → arcSecondary
+Node borders → arcPrimary
+
+========================================================
+BACKEND REQUIREMENTS
+========================================================
+
+Express server:
+
+POST /generate
+
+Steps:
+1. Receive input
+2. Call OpenAI API
+3. Enforce strict JSON schema validation (AJV)
+4. Reject invalid responses
+5. Return validated JSON to frontend
+
+AI must NEVER return markdown or text.
+JSON ONLY.
+
+========================================================
+EXPECTED OUTPUT FROM YOU
+========================================================
+
+Generate complete production-ready code:
+
+- server/index.ts (Express + OpenAI + validation)
+- JSON schema file
+- App.tsx
+- Routing setup
+- Layout + Navigation
+- InputPage
+- ArchitecturePage
+- UseCasesPage
+- ArchitectureDiagram component
+- JourneyDiagram component
+- Icon mapping utility
+- Dagre auto-layout utility
+- Tailwind config extension
+- Clean styling
+
+Code must be:
+- Structured
+- Clean
+- Modular
+- Production-ready
+- Enterprise level
+
+DO NOT explain anything.
+DO NOT output commentary.
+ONLY output full working code.
